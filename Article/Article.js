@@ -85,13 +85,72 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'First Build Week Experience ',
+    date: 'Jan, 15th, 2020',
+    firstParagraph: `Lorem ipsum dolor, sit amet consectetur adipisicing elit.Sunt sed temporibus cupiditate dolore.Sed eveniet placeat nostrum temporibus blanditiis unde ratione debitis explicabo deleniti quia autem praesentium dignissimos, iure voluptate?`,
+    secondParagraph: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt sed temporibus cupiditate dolore. Sed eveniet placeat nostrum temporibus blanditiis unde ratione debitis explicabo deleniti quia autem praesentium dignissimos, iure voluptate?`,
+    thirdParagraph: `Corrupti eveniet rerum aperiam magnam natus tempora necessitatibus repellendus ipsam sint quos culpa velit tempore doloremque eos facilis dolorem, ducimus sequi a voluptate, ut pariatur odit aliquid autem praesentium. Quaerat!`
+
   }
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
+
+function createComponent(title, date, p1, p2, p3) {
+
+  const titleElement = document.createElement('h2');
+  const dateElement = document.createElement('p')
+  const divElement = document.createElement('div')
+  const elementPone = document.createElement('p')
+  const elementPtwo = document.createElement('p')
+  const elementPthree = document.createElement('p')
+  const spanElement = document.createElement('span')
+
+
+
+  divElement.classList.add('article')
+  spanElement.classList.add('expandButton')
+  spanElement.textContent = 'Click to Expand'
+  titleElement.textContent = title
+  dateElement.textContent = date
+  elementPone.textContent = p1
+  elementPtwo.textContent = p2
+  elementPthree.textContent = p3
+
+  divElement.append(titleElement)
+  divElement.append(dateElement)
+  divElement.append(elementPone)
+  divElement.append(elementPtwo)
+  divElement.append(elementPthree)
+  divElement.append(spanElement)
+
+
+
+
+  divElement.addEventListener('click', event => {
+    // divElement.classList.toggle('article')
+    divElement.classList.toggle('article-open')
+  })
+
+  return divElement
+}
+// createComponent(data.title, data.date, data.p1, data.p2, data.p3)
+
+const body = document.querySelector('body')
+
+
+data.forEach(data => {
+  body.append(createComponent(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+
+
+})
+
+
+/* Step 1: Create a function that creates a component. You will want your component to look like the template below:
+
   <div class="article">
-    <h2>{title of the article}</h2>
+   <h2>{title of the article}</h2>
     <p class="date">{date of the article}</p>
 
     {three separate paragraph elements}
